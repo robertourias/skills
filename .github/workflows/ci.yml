@@ -1,0 +1,7 @@
+# TODO: PR -> build-registry + next build. Push main -> + imagem GHCR + deploy SSH.
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs: {}

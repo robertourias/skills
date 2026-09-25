@@ -1,0 +1,5 @@
+node_modules/
+.next/
+apps/web/out/
+apps/web/public/registry.json
+.env*

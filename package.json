@@ -1,0 +1,24 @@
+{
+  "name": "skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Skills pessoais de agentes + catálogo em https://skills.nico.dev.br",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "registry": "tsx scripts/build-registry.ts",
+    "dev": "npm run registry && npm run dev -w web",
+    "build": "npm run registry && npm run build -w web"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "gray-matter": "^4.0.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.5"
+  }
+}

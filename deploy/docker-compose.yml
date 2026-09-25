@@ -1,0 +1,9 @@
+# Destino na VPS: /opt/docker/skills-catalog/
+services:
+  skills-catalog:
+    image: ghcr.io/robertourias/skills-catalog:latest
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.skills.rule=Host(`skills.nico.dev.br`)
+      - traefik.http.routers.skills.tls.certresolver=letsencrypt
