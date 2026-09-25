@@ -1,69 +1,87 @@
-import Image from "next/image";
+import { Banner } from "@/components/Banner";
+import { InstallCommand } from "@/components/InstallCommand";
+import { SkillBrowser } from "@/components/SkillBrowser";
+import {
+  counts,
+  formatDate,
+  getSummaries,
+  lastUpdated,
+  repositoryCommand,
+  skillsShBase,
+} from "@/lib/registry";
 
-export default function Home() {
+export default function HomePage() {
+  const summaries = getSummaries();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="pb-12 pt-8 sm:pt-14">
+        <h1 className="sr-only">Nico Skills</h1>
+        <div className="mb-8">
+          <Banner />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <p className="max-w-[52ch] font-serif text-xl leading-snug sm:text-2xl">
+          Minhas skills pessoais de agentes, direto do repositório público para o seu Claude Code, Cursor ou Codex.
+        </p>
+        <div className="mt-6 max-w-2xl">
+          <InstallCommand tabs={[{ id: "repository", label: "Repositório", command: repositoryCommand }]} />
         </div>
-      </main>
-    </div>
+
+        <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
+          <div>
+            <dt className="text-sm text-muted">Skills</dt>
+            <dd className="font-serif text-3xl tabular-nums">{counts.skills}</dd>
+          </div>
+          <div>
+            <dt className="text-sm text-muted">Packs</dt>
+            <dd className="font-serif text-3xl tabular-nums">{counts.packs}</dd>
+          </div>
+          <div>
+            <dt className="text-sm text-muted">Última atualização</dt>
+            <dd className="font-serif text-3xl tabular-nums">{formatDate(lastUpdated())}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <SkillBrowser skills={summaries} />
+
+      <section aria-labelledby="skills-sh-heading" className="mt-20">
+        <h2 id="skills-sh-heading" className="font-serif text-2xl">
+          Encontre no skills.sh
+        </h2>
+        <p className="mt-2 max-w-[60ch] text-muted">
+          O <a className="text-accent-2 underline underline-offset-4" href="https://www.skills.sh/">skills.sh</a> é o
+          diretório aberto de skills. Há três caminhos para chegar às minhas.
+        </p>
+        <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-6 [overflow-wrap:anywhere] md:grid-cols-3">
+          <div>
+            <h3 className="font-serif text-lg">Buscar pelo nome</h3>
+            <p className="mt-1 text-sm text-muted">
+              No skills.sh, pressione <kbd className="rounded border border-line px-1 font-mono text-xs">/</kbd> e
+              digite o nome da skill ou o dono, <span className="font-mono">robertourias</span>.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-serif text-lg">Abrir a URL direta</h3>
+            <p className="mt-1 break-words text-sm text-muted">
+              As páginas seguem o formato{" "}
+              <span className="font-mono text-xs text-fg">{skillsShBase}/&lt;skill&gt;</span>. Cada skill deste
+              catálogo tem o link pronto.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-serif text-lg">Instalar sem passar por lá</h3>
+            <p className="mt-1 text-sm text-muted">
+              O comando <span className="font-mono text-xs text-fg">{repositoryCommand}</span> funciona mesmo se a
+              skill ainda não aparecer no diretório.
+            </p>
+          </div>
+        </div>
+        <p className="mt-6 max-w-[60ch] border-l-2 border-line pl-4 text-sm text-muted">
+          O ranking do skills.sh vem da telemetria anônima do CLI, gerada a cada instalação. Uma skill nova pode
+          levar algum tempo para ser listada.
+        </p>
+      </section>
+    </>
   );
 }

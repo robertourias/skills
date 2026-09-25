@@ -4,7 +4,7 @@ export const catalogConfig = {
   siteUrl: 'https://skills.nico.dev.br',
   githubUrl: 'https://github.com/robertourias/skills',
   skillsShBase: 'https://www.skills.sh/robertourias/skills',
-  categories: ['documentation', 'writing', 'product', 'design'],
+  categories: ['documentation', 'writing', 'product', 'design', 'testing'],
   agents: ['claude-code', 'cursor', 'codex'],
   statuses: ['stable', 'beta', 'draft'],
 } as const
