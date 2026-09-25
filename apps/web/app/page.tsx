@@ -1,9 +1,9 @@
 import { Banner } from "@/components/Banner";
 import { InstallCommand } from "@/components/InstallCommand";
 import { SkillBrowser } from "@/components/SkillBrowser";
+import { formatDate } from "@/lib/labels";
 import {
   counts,
-  formatDate,
   getSummaries,
   lastUpdated,
   repositoryCommand,

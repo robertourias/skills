@@ -5,7 +5,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Fuse from "fuse.js";
 import { CopyIconButton } from "./CopyIconButton";
 import { StatusBadge } from "./StatusBadge";
-import { categoryLabel, formatDate, type SkillSummary } from "@/lib/registry";
+import { categoryLabel, formatDate } from "@/lib/labels";
+import type { SkillSummary } from "@/lib/registry";
 
 type Sort = "updated" | "alpha";
 

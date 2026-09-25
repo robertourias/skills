@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "registry": "tsx scripts/build-registry.ts",
-    "dev": "npm run registry && npm run dev -w web",
-    "build": "npm run registry && npm run build -w web"
+    "dev": "npm run dev -w web",
+    "build": "npm run build -w web"
   },
   "license": "ISC",
   "devDependencies": {

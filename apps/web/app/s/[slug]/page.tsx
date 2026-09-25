@@ -5,7 +5,8 @@ import { FileTree } from "@/components/FileTree";
 import { InstallCommand } from "@/components/InstallCommand";
 import { SkillMarkdown } from "@/components/SkillMarkdown";
 import { StatusBadge } from "@/components/StatusBadge";
-import { categoryLabel, formatDate, getSkill, getSkills } from "@/lib/registry";
+import { categoryLabel, formatDate } from "@/lib/labels";
+import { getSkill, getSkills } from "@/lib/registry";
 
 export function generateStaticParams() {
   return getSkills().map((s) => ({ slug: s.slug }));

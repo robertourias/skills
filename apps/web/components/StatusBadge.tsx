@@ -1,4 +1,4 @@
-import { STATUS_LABELS, type SkillStatus } from "@/lib/registry";
+import { STATUS_LABELS, type SkillStatus } from "@/lib/labels";
 
 const STYLES: Record<SkillStatus, string> = {
   stable: "border-ok text-ok",
